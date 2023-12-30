@@ -1,1 +1,1 @@
-# config
+config files for various apps
