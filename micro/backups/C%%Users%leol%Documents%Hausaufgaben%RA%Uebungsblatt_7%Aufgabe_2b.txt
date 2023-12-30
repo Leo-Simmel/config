@@ -1,0 +1,3 @@
+Aktueller Wert:3
+Aktueller Wert:2
+Aktuell

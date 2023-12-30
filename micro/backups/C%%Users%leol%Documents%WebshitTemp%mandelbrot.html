@@ -1,0 +1,32 @@
+<canvas id="screen" width="1000" height="1000"></canvas>
+<script>
+const screen = document.getElementById("screen").getContext("2d");
+
+function pixel(x, y, color) {
+    screen.fillStyle = color;
+    screen.fillRect(x, y, 2, 2);
+}
+
+const zoom = 400;
+
+const zoomx = zoom, zoomy = zoom;
+const centerx = -0.75; centery = 0;
+
+for (let x = 0; x <= 1000-3; x++) {
+    for (let y = 0; y <= 1000 - 3; y++) {
+        const dx = (x - 500) / zoomx + centerx;
+        const dy = (y - 500) / zoomy - centery;
+
+        let a = dx, b = dy, d;
+        for (let t = 0; t < 200; t++) {
+            d = a*a - b*b + dx;
+            b = 2*a*b + dy;
+            a = d;
+            if (d > 200) {
+                pixel(x, y, `rgb(${3*t},${t},${0.5*t})`);
+                break;
+            }
+        }
+    }
+}
+</script>

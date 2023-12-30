@@ -1,0 +1,33 @@
+a)
+In diesem Beispiel ist der erste Parameter der Konsole die Anzahl der Zyklen
+die beide Threads durchlaufen. In jedem Zyklus schreibt der Thread eine Ausgabe 
+zur Konsole, im folgenden Format: #Threadname cycle #Zyklusnummer.
+Die Zyklusnummer wird von Null bis exklusiv zum Eingabeparameter inkrementiert.
+Die Threads sind natürlich unabhängig weshalb zB. ein Thread dem anderen voraus
+sein kann.
+
+b)
+Sei (n|k) der binomische-koeffizient
+	n!
+ --------
+ k!(n-k)!
+
+dann ist count die funktion die die Anzahl der Permutationen zählt, und ist
+definiert als
+
+count (a,b) := (a+b | a) = (a+b | b)
+
+und die Anzahl der Threads ist dann: count (c,c) also
+
+(2*c | c) = (2c)! / (c!)^2
+
+Count kann auch rekursiv definiert werden, was äquivalent zur Rekursiven definition
+der Binomischen Koeffizienten ist
+
+count 0 b = (b | b) = (b | 0) = 1
+count a 0 = (a | a) = (a | 0) = 1
+count a b = count (a-1) b + count a (b-1)
+= ((a+b)-1 | a-1) + ((a+b)-1 | a)
+
+Anbei ist ein Haskell Programm was die Permutationen von Strings berechnet, man kann
+zwei Strings in der Kommandozeile eingeben

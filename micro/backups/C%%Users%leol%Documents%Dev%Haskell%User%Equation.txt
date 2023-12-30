@@ -1,0 +1,19 @@
+fmap (map toUpper) getContents >>= putStr                   | fmap
+getContents >>= return . map toUpper >>= putStr             | Associativity
+getContents >>= (\x -> return (map toUpper x) >>= putStr)   | Left identity
+getContents >>= (\x -> putStr (map toUpper x))              | composition
+getContents >>= (\x -> putStr . (map toUpper) $ x)          | eta-reduction
+getContents >>= putStr . (map toUpper)
+
+m1 *> m2
+(id <$ m1) <*> m2
+(id <$ m1) >>= (\f -> m2 >>= return . f)
+fmap (const id) m1 >>= (\f -> m2 >>= return . f)
+m1 >>= (\f -> m2 >>= return . f) . const id
+m1 >>= (\x -> (\f -> m2 >>= return . f) (const id x))
+m1 >>= (\x -> (\f -> m2 >>= return . f) id)
+m1 >>= (\x -> m2 >>= return . id)
+m1 >>= (\x -> fmap id m2)
+m1 >>= (\x -> id m2)
+m1 >>= (\x -> m2)
+m1 >>= const m2

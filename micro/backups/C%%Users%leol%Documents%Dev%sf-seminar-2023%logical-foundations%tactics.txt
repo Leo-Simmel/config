@@ -1,0 +1,35 @@
+replace T1 with T2
+assert (H: _)
+apply H [with]
+symmetry
+transitivity b
+injection as Eq1 ..
+discriminate H
+f_equal  (apply f_equal)
+generalize dependent
+remember
+unfold
+split  (apply and_intro)
+left / right
+exfalso  (apply ex_falso_quodlibet)
+I : True
+inversion
+constructor
+exact
+clear H
+subst x
+subst
+rename ... into ...
+assumption
+contradiction constructor
+
+cbn | cbv
+
+Check
+Search
+Compute
+Print
+Show Proof
+Unset Printing Notations
+Set Printing Coercions
+Set Printing All

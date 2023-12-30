@@ -1,0 +1,26 @@
+Cool Haskell Functions
+
+fix f = let x = f x in x
+
+iterate, until
+
+f `on` g = \x y -> (g x) `f` (g y)
+
+words' = filter (not . any isSpace) . groupBy ((==) `on` isSpace)
+
+interact :: (String -> String) -> IO ()
+-- Process stdin and output
+
+between:: (c -> d) -> (a -> b) -> (b -> c) -> a -> d
+between g f = (g.) . (.f)
+between g f = \h -> g.(h.f)
+
+(.) :: (t2 -> t3) -> (t1 -> t2) -> t1 -> t3
+(.f) :: (b -> t3) -> a -> t3
+(g.) :: (t1 -> c) -> t1 -> d
+
+-- Monoid
+foldMap f = foldr (mappend . f) mempty
+foldr f e t = appEndo (foldMap (Endo #. f) t) e
+(#.) :: Coercible b c => (b -> c) -> (a -> b) -> a -> c
+(#.) _f = coerce
